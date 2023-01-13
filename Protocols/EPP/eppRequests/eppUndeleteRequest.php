@@ -20,7 +20,7 @@ class eppUndeleteRequest extends eppRequest {
 
 
     public function setDomain(eppDomain $domain) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('eppUndeleteRequest domain object does not contain a valid domain name');
         }
         #

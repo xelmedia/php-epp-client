@@ -20,7 +20,7 @@ class eppDeleteHostRequest extends eppHostRequest {
     }
 
     public function setHost(eppHost $host) {
-        if (!strlen($host->getHostname())) {
+        if (!strlen($host->getHostname() ?? '')) {
             throw new eppException('eppDeleteRequest host object does not contain a valid hostname');
         }
         $this->hostobject->appendChild($this->createElement('host:name', $host->getHostname()));

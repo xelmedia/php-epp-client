@@ -14,7 +14,7 @@ class eppUpdateHostRequest extends eppHostRequest {
         if ($objectname instanceof eppHost) {
             $hostname = $objectname->getHostname();
         } else {
-            if (strlen($objectname)) {
+            if (strlen($objectname ?? '')) {
                 $hostname = $objectname;
             } else {
                 throw new eppException("Object name must be valid string on eppUpdateHostRequest");
@@ -61,7 +61,7 @@ class eppUpdateHostRequest extends eppHostRequest {
             if ($updateInfo->getHostname() != $hostname) {
                 // The update command command can only contain a hostname
                 $chgcmd = $this->createElement('host:chg');
-                if (strlen($updateInfo->getHostname()) > 0) {
+                if (strlen($updateInfo->getHostname() ?? '') > 0) {
                     $chgcmd->appendChild($this->createElement('host:name', $updateInfo->getHostname()));
                 } else {
                     throw new eppException('New hostname must be specified on host:update command');

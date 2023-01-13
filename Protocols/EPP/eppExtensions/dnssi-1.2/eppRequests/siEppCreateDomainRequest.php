@@ -14,7 +14,7 @@ class siEppCreateDomainRequest extends eppCreateDomainRequest
     public function createPw(eppDomain $createinfo)
     {
         // Create PW tag even if there is no pw
-        if (!strlen($createinfo->getAuthorisationCode())) {
+        if (!strlen($createinfo->getAuthorisationCode() ?? '')) {
             $authinfo = $this->createElement('domain:authInfo');
             $authinfo->appendChild($this->createElement('domain:pw', ""));
             $this->domainobject->appendChild($authinfo);

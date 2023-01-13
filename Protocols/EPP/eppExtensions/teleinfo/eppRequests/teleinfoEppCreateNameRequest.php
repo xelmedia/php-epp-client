@@ -24,7 +24,7 @@ class teleinfoEppCreateNameRequest extends teleinfoEppNameRequest {
         if (!($nameObject instanceof eppChinaName) && !($nameObject instanceof eppRealName)){
             throw new eppException('No valid name object in create name request,only eppChinaName or eppRealName allow');
         }
-        if (!strlen($nameObject->getName())) {
+        if (!strlen($nameObject->getName() ?? '')) {
             throw new eppException('No valid name in create name request');
         }
         if ($nameObject instanceof eppChinaName){
@@ -52,7 +52,7 @@ class teleinfoEppCreateNameRequest extends teleinfoEppNameRequest {
             }
             $this->nameobject->appendChild($rnv);
         }
-        if (strlen($nameObject->getAuthorisationCode())) {
+        if (strlen($nameObject->getAuthorisationCode() ?? '')) {
             $authinfo = $this->createElement('nv:authInfo');
             if ($this->useCdata()) {
                 $pw = $authinfo->appendChild($this->createElement('nv:pw'));

@@ -17,7 +17,7 @@ use Metaregistrar\EPP\eppCheckDomainResponse;
 function GeneratePassword($crypt = false, $len = 8, $regexp = '/^[a-z]{1}[a-z0-9]*$/i') {
     $testpass = null;
     $pass = null;
-    while (strlen($pass) < $len) {
+    while (strlen($pass ?? '') < $len) {
         $testpass .= chr(rand(48, 122));
         if (preg_match($regexp, $testpass)) {
             $pass = $testpass;

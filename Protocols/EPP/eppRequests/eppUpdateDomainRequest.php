@@ -12,7 +12,7 @@ class eppUpdateDomainRequest extends eppDomainRequest {
         if ($objectname instanceof eppDomain) {
             $domainname = $objectname->getDomainname();
         } else {
-            if (strlen($objectname)) {
+            if (strlen($objectname ?? '')) {
                 $domainname = $objectname;
             } else {
                 throw new eppException("Object name must be valid string on eppUpdateDomainRequest");
@@ -95,7 +95,7 @@ class eppUpdateDomainRequest extends eppDomainRequest {
                 $this->addDomainStatus($element, $status);
             }
         }
-        if (strlen($domain->getAuthorisationCode())) {
+        if (strlen($domain->getAuthorisationCode() ?? '')) {
             $authinfo = $this->createElement('domain:authInfo');
             if ($this->useCdata()) {
                 $pw = $this->createElement('domain:pw');

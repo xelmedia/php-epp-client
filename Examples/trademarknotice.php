@@ -16,7 +16,7 @@ try {
         echo $list[0]."\n";
     } else {
         foreach ($list as $line) {
-            if (strlen($line)>0) {
+            if (strlen($line ?? '')>0) {
                 list($domainname, $key) = explode(',', $line);
                 if ($domainname == $domain) {
                     $domainkey = $key;

@@ -236,7 +236,7 @@ class eppContact {
      */
     protected function validatePhoneNumber($number) {
         //Format the phone number according to EPP formatting rules.
-        if (!strlen($number)) {
+        if (!strlen($number ?? '')) {
             return null;
         }
         if ($number[0] != '+') {

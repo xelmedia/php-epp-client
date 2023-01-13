@@ -202,7 +202,7 @@ class eppResponse extends \DOMDocument {
                 $errorstring .= '; ' . $id;
             }
             $resultreason = $this->getResultReason();
-            if (strlen($resultreason)) {
+            if (strlen($resultreason ?? '')) {
                 $errorstring .= ' (' . $resultreason . ')';
             }
             if ((is_array($this->exceptions)) && (count($this->exceptions)>0)) {

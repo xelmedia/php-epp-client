@@ -24,7 +24,7 @@ class metaregCreateDnsRequest extends metaregDnsRequest {
      */
     public function __construct(eppDomain $domain, array $records) {
         parent::__construct(eppRequest::TYPE_CREATE);
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('Domain object does not contain a valid domain name');
         }
         $dname = $this->createElement('dns-ext:name', $domain->getDomainname());

@@ -25,7 +25,7 @@ class eppCreateHostRequest extends eppHostRequest {
      * @throws eppException
      */
     public function setHost(eppHost $host) {
-        if (!strlen($host->getHostname())) {
+        if (!strlen($host->getHostname() ?? '')) {
             throw new eppException('No valid hostname in create host request');
         }
         #

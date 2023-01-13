@@ -51,23 +51,23 @@ class eppHost {
         $this->setHostname($hostname);
         if (is_array($ipaddress)) {
             foreach ($ipaddress as $ip) {
-                if (strlen($ip)) {
+                if (strlen($ip ?? '')) {
                     $this->setIpAddress($ip);
                 }
             }
         } else {
-            if (strlen($ipaddress)) {
+            if (strlen($ipaddress ?? '')) {
                 $this->setIpAddress($ipaddress);
             }
         }
         if (is_array($hoststatus)) {
             foreach ($hoststatus as $status) {
-                if (strlen($status)) {
+                if (strlen($status ?? '')) {
                     $this->setHostStatus($status);
                 }
             }
         } else {
-            if (strlen($hoststatus)) {
+            if (strlen($hoststatus ?? '')) {
                 $this->setHostStatus($hoststatus);
             }
         }
@@ -107,7 +107,7 @@ class eppHost {
 
     // setters
     public function setHostname($hostname) {
-        if (strlen($hostname) > 0) {
+        if (strlen($hostname ?? '') > 0) {
             $this->hostname = $hostname;
         } else {
             throw new eppException("Hostname cannot be empty on eppHost object");

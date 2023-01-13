@@ -83,7 +83,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
      * @throws eppException
      */
     public function setDomain(eppDomain $domain) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('No valid domain name in create domain request');
         }
         #
@@ -110,7 +110,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
         }
         # Verisign's production environment does not require a registrant, but the OTE environment does,
         # so remove the above exception and add the following check
-        if (strlen($domain->getRegistrant()) > 0) {
+        if (strlen($domain->getRegistrant() ?? '') > 0) {
             $this->domainobject->appendChild($this->createElement('domain:registrant', $domain->getRegistrant()));
         }
         $contacts = $domain->getContacts();
@@ -122,7 +122,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
                 }
             }
         }
-        if (strlen($domain->getAuthorisationCode())) {
+        if (strlen($domain->getAuthorisationCode() ?? '')) {
             $authinfo = $this->createElement('domain:authInfo');
             if ($this->useCdata()) {
                 $pw = $authinfo->appendChild($this->createElement('domain:pw'));

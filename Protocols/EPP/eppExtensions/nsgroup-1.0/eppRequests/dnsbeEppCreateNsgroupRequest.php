@@ -71,7 +71,7 @@ class dnsbeEppCreateNsgroupRequest extends eppRequest {
      * @throws eppException
      */
     private function addHost(eppHost $host) {
-        if (!strlen($host->getHostname())) {
+        if (!strlen($host->getHostname() ?? '')) {
             throw new eppException('No valid hostname in create host request');
         }
         if (isset($this->hostobject)) {

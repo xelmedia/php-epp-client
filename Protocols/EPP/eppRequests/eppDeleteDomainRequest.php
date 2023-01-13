@@ -19,7 +19,7 @@ class eppDeleteDomainRequest extends eppDomainRequest {
     }
 
     public function setDomain(eppDomain $domain) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('eppDeleteRequest domain object does not contain a valid domain name');
         }
         #

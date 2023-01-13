@@ -86,13 +86,13 @@ class eppCheckRequest extends eppRequest {
         $this->hostobject = $this->createElement('host:check');
         foreach ($hosts as $host) {
             if ($host instanceof eppHost) {
-                if (strlen($host->getHostname()) > 0) {
+                if (strlen($host->getHostname() ?? '') > 0) {
                     $this->hostobject->appendChild($this->createElement('host:name', $host->getHostname()));
                 } else {
                     throw new eppException("Empty hostobject on checkRequest creation");
                 }
             } else {
-                if (strlen($host) > 0) {
+                if (strlen($host ?? '') > 0) {
                     $this->hostobject->appendChild($this->createElement('host:name', $host));
                 } else {
                     throw new eppException("Empty hostname on checkRequest creation");

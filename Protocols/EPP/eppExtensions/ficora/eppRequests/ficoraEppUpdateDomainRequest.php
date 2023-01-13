@@ -52,9 +52,9 @@ class ficoraEppUpdateDomainRequest extends eppUpdateDomainRequest {
 
         // authinfo might contain domain:pw (provider transfer key) and/or domain:pwregistranttransfer (registrant transfer key)
         // registrant transfer key must be present on registrant change, empty one is valid if registry number doesn't change
-        if (strlen($domain->getAuthorisationCode()) || $domain->getRegistrant() || $domain->getRegistrantTransferCode()) {
+        if (strlen($domain->getAuthorisationCode() ?? '') || $domain->getRegistrant() || $domain->getRegistrantTransferCode()) {
             $authinfo = $this->createElement('domain:authInfo');
-            if (strlen($domain->getAuthorisationCode())) {
+            if (strlen($domain->getAuthorisationCode() ?? '')) {
                 $pw = $this->createElement('domain:pw');
                 $pw->appendChild($this->createCDATASection($domain->getAuthorisationCode()));
                 $authinfo->appendChild($pw);

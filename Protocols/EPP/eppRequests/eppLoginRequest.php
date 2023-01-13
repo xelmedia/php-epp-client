@@ -38,7 +38,7 @@ class eppLoginRequest extends eppRequest {
     }
 
     public function addNewPassword($password) {
-        if (!strlen($password)) {
+        if (!strlen($password ?? '')) {
             throw new eppException('No new password specified for password change');
         }
         if ($this->useCdata()) {
@@ -50,14 +50,14 @@ class eppLoginRequest extends eppRequest {
     }
 
     public function addUsername($username) {
-        if (!strlen($username)) {
+        if (!strlen($username ?? '')) {
             throw new eppException('No userid specified for login attempt');
         }
         $this->login->appendChild($this->createElement('clID', $username));
     }
 
     public function addPassword($password) {
-        if (!strlen($password)) {
+        if (!strlen($password ?? '')) {
             throw new eppException('No password specified for login attempt');
         }
         if ($this->useCdata()) {
@@ -70,7 +70,7 @@ class eppLoginRequest extends eppRequest {
 
     public function addVersion($version) {
         $this->checkForOptions();
-        if (!strlen($version)) {
+        if (!strlen($version ?? '')) {
             throw new eppException('No version number specified for login attempt');
         }
         if ($this->options) {
@@ -81,7 +81,7 @@ class eppLoginRequest extends eppRequest {
 
     public function addLanguage($language) {
         $this->checkForOptions();
-        if (!strlen($language)) {
+        if (!strlen($language ?? '')) {
             throw new eppException('No language specified for login attempt');
         }
         if ($this->options) {
