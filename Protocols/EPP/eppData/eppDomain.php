@@ -81,7 +81,7 @@ class eppDomain {
      */
     public function __construct($domainname, $registrant = null, $contacts = null, $hosts = null, $period = 0, $authorisationCode = null) {
 
-        if (strlen($domainname)) {
+        if (strlen($domainname ?? '')) {
             $this->setDomainname($domainname);
         } else {
             throw new eppException('Domain name not set');
@@ -94,7 +94,7 @@ class eppDomain {
             $this->setRegistrant($registrant->getContactHandle());
         } else {
             if ($registrant) {
-                if (strlen($registrant)) {
+                if (strlen($registrant ?? '')) {
                     $this->setRegistrant($registrant);
                 } else {
                     throw new eppException('Registrant must be Metaregistrar\EPP\eppContactHandle or string on eppDomain creation');
@@ -119,7 +119,7 @@ class eppDomain {
                     $this->addContact($contact);
                 }
             } else {
-                if (strlen($contacts)) {
+                if (strlen($contacts ?? '')) {
                     $this->addContact($contacts);
                 }
             }
@@ -210,7 +210,7 @@ class eppDomain {
      * @return void
      */
     public function addContact(eppContactHandle $contact) {
-        if (!strlen($contact->getContactType())) {
+        if (!strlen($contact->getContactType() ?? '')) {
             throw new eppException('No contact type set for: ' . $contact->getContactHandle() . ', please set one!');
         }
         $this->contacts[] = $contact;

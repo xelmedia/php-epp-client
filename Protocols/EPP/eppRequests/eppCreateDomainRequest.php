@@ -3,12 +3,12 @@ namespace Metaregistrar\EPP;
 
 class eppCreateDomainRequest extends eppDomainRequest {
 
-    
+
 
     function __construct($createinfo, $forcehostattr = false, $namespacesinroot=true, $usecdata = true) {
         $this->setNamespacesinroot($namespacesinroot);
         $this->setForcehostattr($forcehostattr);
-        
+
         parent::__construct(eppRequest::TYPE_CREATE);
         $this->setUseCdata($usecdata);
         if ($createinfo instanceof eppDomain) {
@@ -23,7 +23,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
     function __destruct() {
         parent::__destruct();
     }
-    
+
 
     /*
      * @param eppSecdns $secdns
@@ -83,7 +83,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
      * @throws eppException
      */
     public function setDomain(eppDomain $domain) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('No valid domain name in create domain request');
         }
         #
@@ -110,7 +110,7 @@ class eppCreateDomainRequest extends eppDomainRequest {
         }
         # Verisign's production environment does not require a registrant, but the OTE environment does,
         # so remove the above exception and add the following check
-        if (strlen($domain->getRegistrant()) > 0) {
+        if (strlen($domain->getRegistrant() ?? '') > 0) {
             $this->domainobject->appendChild($this->createElement('domain:registrant', $domain->getRegistrant()));
         }
         $contacts = $domain->getContacts();

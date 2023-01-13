@@ -104,7 +104,7 @@ class eppInfoDomainResponse extends eppInfoResponse {
         $cont = null;
         foreach ($result as $contact) {
             /* @var $contact \DOMElement */
-            if (($contact->nodeValue) && (strlen($contact->nodeValue) > 0)) {
+            if (($contact->nodeValue) && (strlen($contact->nodeValue ?? '') > 0)) {
                 $contacttype = $contact->getAttribute('type');
                 if ($contacttype) {
                     // DNSBE specific, but too much hassle to create an override for this

@@ -63,7 +63,7 @@ class eppContactHandle {
      * @throws eppException
      */
     public function setContactHandle($contactHandle) {
-        if (!strlen($contactHandle)) {
+        if (!strlen($contactHandle ?? '')) {
             throw new eppException('Contact handle specified is not valid: ' . $contactHandle);
         }
         $this->contactHandle = $contactHandle;

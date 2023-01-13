@@ -12,7 +12,7 @@ class eppInfoResponse extends eppResponse {
         if (is_array($arr)) {
             foreach ($arr as $value) {
                 if (is_string($value)) {
-                    if (strlen($ret)) {
+                    if (strlen($ret ?? '')) {
                         $ret .= ',';
                     }
                     $ret .= $value;

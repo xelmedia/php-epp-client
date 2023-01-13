@@ -18,7 +18,7 @@ class iisEppCreateContactRequest extends eppCreateContactRequest {
     function __construct($createinfo, $orgno = null, $vatno = null, $contactid = null) {
         parent::__construct($createinfo);
         $contactname = $createinfo->getPostalInfo(0)->getOrganisationName();
-        if ((!$contactname) || (strlen($contactname)==0)) {
+        if ((!$contactname) || (strlen($contactname ?? '')==0)) {
             $contactname = $createinfo->getPostalInfo(0)->getName();
         }
         $this->contactobject->getElementsByTagName('contact:id')->item(0)->nodeValue = $contactid ?: $this->createContactId($contactname);
@@ -55,7 +55,7 @@ class iisEppCreateContactRequest extends eppCreateContactRequest {
     }
 
     private function createContactId($name = null) {
-        if ((!$name) || (strlen($name)==0)) {
+        if ((!$name) || (strlen($name ?? '')==0)) {
             $charset = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
             $contact_id = substr(str_shuffle($charset), 0, 6);
         } else {

@@ -21,7 +21,7 @@ namespace Metaregistrar\EPP;
 class metaregInfoDnsRequest extends metaregDnsRequest {
     public function __construct(eppDomain $domain) {
         parent::__construct(eppRequest::TYPE_INFO);
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('Domain object does not contain a valid domain name');
         }
         $dname = $this->createElement('dns-ext:name', $domain->getDomainname());

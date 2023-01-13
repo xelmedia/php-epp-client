@@ -20,7 +20,7 @@ class eppDeleteContactRequest extends eppContactRequest {
     }
 
     public function setContactHandle(eppContactHandle $contacthandle) {
-        if (!strlen($contacthandle->getContactHandle())) {
+        if (!strlen($contacthandle->getContactHandle() ?? '')) {
             throw new eppException('eppDeleteRequest contacthandle object does not contain a valid contacthandle');
         }
         #

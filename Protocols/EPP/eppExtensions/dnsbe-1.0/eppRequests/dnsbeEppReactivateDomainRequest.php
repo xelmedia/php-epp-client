@@ -31,7 +31,7 @@ class dnsbeEppReactivateDomainRequest extends eppRequest {
     }
 
    public function setDomain(eppDomain $domain) {
-      if (!strlen($domain->getDomainname())) {
+      if (!strlen($domain->getDomainname() ?? '')) {
          throw new eppException('dnsbeEppReactivateDomainRequest domain object does not contain a valid domain name');
       }
       #

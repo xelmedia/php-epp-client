@@ -35,7 +35,7 @@ class eppInfoDomainRequest extends eppDomainRequest {
     }
 
     public function setDomain(eppDomain $domain, $hosts = null) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('Domain object does not contain a valid domain name');
         }
         #

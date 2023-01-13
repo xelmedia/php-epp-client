@@ -26,7 +26,7 @@ class dnsbeEppUndeleteDomainRequest extends eppUndeleteRequest {
     }
 
    public function setDomain(eppDomain $domain) {
-      if (!strlen($domain->getDomainname())) {
+      if (!strlen($domain->getDomainname() ?? '')) {
          throw new eppException('dnsbeEppUndeleteRequest domain object does not contain a valid domain name');
       }
       #

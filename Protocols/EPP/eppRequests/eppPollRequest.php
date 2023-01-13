@@ -19,7 +19,7 @@ class eppPollRequest extends eppRequest {
         if (($polltype != self::POLL_REQ) && ($polltype != self::POLL_ACK)) {
             throw new eppException('Polltype needs to be REQ or ACK on poll request');
         }
-        if (($polltype == self::POLL_ACK) && (!strlen($messageid))) {
+        if (($polltype == self::POLL_ACK) && (!strlen($messageid ?? ''))) {
             throw new eppException('Messageid needs to be filled on poll ACK request');
         }
         switch ($polltype) {

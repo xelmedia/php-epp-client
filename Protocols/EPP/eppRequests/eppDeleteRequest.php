@@ -29,7 +29,7 @@ class eppDeleteRequest extends eppRequest {
 
 
     public function setDomain(eppDomain $domain) {
-        if (!strlen($domain->getDomainname())) {
+        if (!strlen($domain->getDomainname() ?? '')) {
             throw new eppException('eppDeleteRequest domain object does not contain a valid domain name');
         }
         #
@@ -44,7 +44,7 @@ class eppDeleteRequest extends eppRequest {
 
 
     public function setContactHandle(eppContactHandle $contacthandle) {
-        if (!strlen($contacthandle->getContactHandle())) {
+        if (!strlen($contacthandle->getContactHandle() ?? '')) {
             throw new eppException('eppDeleteRequest contacthandle object does not contain a valid contacthandle');
         }
         #
@@ -59,7 +59,7 @@ class eppDeleteRequest extends eppRequest {
 
 
     public function setHost(eppHost $host) {
-        if (!strlen($host->getHostname())) {
+        if (!strlen($host->getHostname() ?? '')) {
             throw new eppException('eppDeleteRequest host object does not contain a valid hostname');
         }
         #

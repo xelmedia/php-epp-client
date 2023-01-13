@@ -33,7 +33,7 @@ class eppTransferRequest extends eppRequest {
         switch ($operation) {
             case self::OPERATION_QUERY:
                 if ($object instanceof eppDomain) {
-                    if (!strlen($object->getDomainname())) {
+                    if (!strlen($object->getDomainname() ?? '')) {
                         throw new eppException('Domain object does not contain a valid domain name on eppTransferRequest');
                     }
                     $this->setDomainQuery($object);
@@ -43,7 +43,7 @@ class eppTransferRequest extends eppRequest {
                 break;
             case self::OPERATION_REQUEST:
                 if ($object instanceof eppDomain) {
-                    if (!strlen($object->getDomainname())) {
+                    if (!strlen($object->getDomainname() ?? '')) {
                         throw new eppException('Domain object does not contain a valid domain name on eppTransferRequest');
                     }
                     $this->setDomainRequest($object);
@@ -53,7 +53,7 @@ class eppTransferRequest extends eppRequest {
                 break;
             case self::OPERATION_CANCEL:
                 if ($object instanceof eppDomain) {
-                    if (!strlen($object->getDomainname())) {
+                    if (!strlen($object->getDomainname() ?? '')) {
                         throw new eppException('Domain object does not contain a valid domain name on eppTransferRequest');
                     }
                     $this->setDomainCancel($object);
@@ -63,7 +63,7 @@ class eppTransferRequest extends eppRequest {
                 break;
             case self::OPERATION_APPROVE:
                 if ($object instanceof eppDomain) {
-                    if (!strlen($object->getDomainname())) {
+                    if (!strlen($object->getDomainname() ?? '')) {
                         throw new eppException('Domain object does not contain a valid domain name on eppTransferRequest');
                     }
                     $this->setDomainApprove($object);
@@ -73,7 +73,7 @@ class eppTransferRequest extends eppRequest {
                 break;
             case self::OPERATION_REJECT:
                 if ($object instanceof eppDomain) {
-                    if (!strlen($object->getDomainname())) {
+                    if (!strlen($object->getDomainname() ?? '')) {
                         throw new eppException('Domain object does not contain a valid domain name on eppTransferRequest');
                     }
                     $this->setDomainReject($object);
@@ -213,7 +213,7 @@ class eppTransferRequest extends eppRequest {
         $transfer->setAttribute('op', self::OPERATION_REQUEST);
         $this->contactobject = $this->createElement('contact:transfer');
         $this->contactobject->appendChild($this->createElement('contact:id', $contact->getContactHandle()));
-	if (strlen($contact->getPassword())) {
+	if (strlen($contact->getPassword() ?? '')) {
 	    $authinfo = $this->createElement('contact:authInfo');
 	    $authinfo->appendChild($this->createElement('contact:pw', $contact->getPassword()));
 	    $this->contactobject->appendChild($authinfo);

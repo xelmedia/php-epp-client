@@ -35,7 +35,7 @@ class dnsbeEppUpdateNsgroupRequest extends eppRequest
       parent::__construct();
       $this->addExtension('xmlns:nsgroup', 'http://www.dns.be/xml/epp/nsgroup-1.0');
       if (is_string($groupname)) {
-         if (strlen($groupname) > 0) {
+         if (strlen($groupname ?? '') > 0) {
             $this->addNsGroup($groupname);
             if (is_array($hosts)) {
                foreach ($hosts as $host) {
@@ -76,7 +76,7 @@ class dnsbeEppUpdateNsgroupRequest extends eppRequest
     * @throws eppException
     */
    private function addHost(eppHost $host) {
-      if (!strlen($host->getHostname())) {
+      if (!strlen($host->getHostname() ?? '')) {
          throw new eppException('No valid hostname in create host request');
       }
       if (isset($this->hostobject)) {

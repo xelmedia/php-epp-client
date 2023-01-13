@@ -27,7 +27,7 @@ class eppChinaName{
      * @param string $authorisationCode
      */
     public function __construct($name, $rnvCode = null, $authorisationCode = null) {
-        if (strlen($name)) {
+        if (strlen($name ?? '')) {
             $this->setName($name);
         } else {
             throw new eppException('Domain name not set');
