@@ -107,7 +107,8 @@ class eppHttpConnection extends eppConnection {
         $this->writeLog("Writing: " . strlen($content),'WRITE');
 
         $ch = $this->initCurl();
-        if (false === $ch) {
+       // Added support for >8.0 php version, curl init results in a \CurlHandle instead of a resource
+        if (!is_resource($ch) && !$ch instanceof \CurlHandle) {
             throw new eppException('Failed to init CURL resource.');
         }
 
