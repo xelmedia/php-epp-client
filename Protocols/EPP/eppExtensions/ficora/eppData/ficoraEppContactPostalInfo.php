@@ -28,7 +28,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = htmlspecialchars($firstName, ENT_COMPAT, "UTF-8");
+        $this->firstName = htmlspecialchars($firstName ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**
@@ -46,7 +46,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setLastName($lastName)
     {
-        $this->lastName =  htmlspecialchars($lastName, ENT_COMPAT, "UTF-8");
+        $this->lastName =  htmlspecialchars($lastName ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**
@@ -77,7 +77,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setIsFinnish($isFinnish)
     {
-        $this->isFinnish = htmlspecialchars($isFinnish, ENT_COMPAT, "UTF-8");
+        $this->isFinnish = htmlspecialchars($isFinnish ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**
@@ -95,7 +95,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setIdentity($identity)
     {
-        $this->identity = htmlspecialchars($identity, ENT_COMPAT, "UTF-8");
+        $this->identity = htmlspecialchars($identity ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**
@@ -113,7 +113,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setBirthDate($birthDate)
     {
-        $this->birthDate = htmlspecialchars($birthDate, ENT_COMPAT, "UTF-8");
+        $this->birthDate = htmlspecialchars($birthDate ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**
@@ -131,7 +131,7 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
      */
     public function setRegisterNumber($registerNumber)
     {
-        $this->registerNumber = htmlspecialchars($registerNumber, ENT_COMPAT, "UTF-8");
+        $this->registerNumber = htmlspecialchars($registerNumber ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**

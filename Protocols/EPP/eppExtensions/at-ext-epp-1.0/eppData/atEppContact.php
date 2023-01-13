@@ -92,7 +92,7 @@ class atEppContact extends eppContact {
     {
         if($personType !== self::PERS_TYPE_ORGANISATION && $personType !== self::PERS_TYPE_PRIVATPERSON && $personType !== self::PERS_TYPE_ROLE)
         {
-            throw new eppException('Invalid personType ' . htmlspecialchars ($personType) . ' assigned! One of the following personTypes are allowd: privateperson (natural person) organisation (companies ect.) role (e.g. administrators ect.)');
+            throw new eppException('Invalid personType ' . htmlspecialchars ($personType ?? '') . ' assigned! One of the following personTypes are allowd: privateperson (natural person) organisation (companies ect.) role (e.g. administrators ect.)');
         }
         $this->personType=$personType;
     }
