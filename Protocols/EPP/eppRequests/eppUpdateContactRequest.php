@@ -9,7 +9,7 @@ class eppUpdateContactRequest extends eppContactRequest {
         if ($objectname instanceof eppContactHandle) {
             $contacthandle = $objectname->getContactHandle();
         } else {
-            if (strlen($objectname)) {
+            if (strlen($objectname ?? '')) {
                 $contacthandle = $objectname;
             } else {
                 throw new eppException("Object name must be valid string on eppUpdateContactRequest");
@@ -102,26 +102,26 @@ class eppUpdateContactRequest extends eppContactRequest {
                 $postalinfo->appendChild($this->createElement('contact:name', $postal->getName()));
             }
             // Optional field
-            if (!is_null($postal->getOrganisationName())) {
+            if (!is_null($postal->getOrganisationName() ?? '')) {
                 $postalinfo->appendChild($this->createElement('contact:org', $postal->getOrganisationName()));
             }
-            if ((($postal->getStreetCount()) > 0) || strlen($postal->getCity()) || strlen($postal->getProvince()) || strlen($postal->getZipcode()) || strlen($postal->getCountrycode())) {
+            if ((($postal->getStreetCount()) > 0) || strlen($postal->getCity() ?? '') || strlen($postal->getProvince() ?? '') || strlen($postal->getZipcode() ?? '') || strlen($postal->getCountrycode() ?? '')) {
                 $postaladdr = $this->createElement('contact:addr');
                 if (($count = $postal->getStreetCount()) > 0) {
                     for ($i = 0; $i < $count; $i++) {
                         $postaladdr->appendChild($this->createElement('contact:street', $postal->getStreet($i)));
                     }
                 }
-                if (strlen($postal->getCity())) {
+                if (strlen($postal->getCity() ?? '')) {
                     $postaladdr->appendChild($this->createElement('contact:city', $postal->getCity()));
                 }
                 if (is_string($postal->getProvince()) && strlen($postal->getProvince())) {
                     $postaladdr->appendChild($this->createElement('contact:sp', $postal->getProvince()));
                 }
-                if (strlen($postal->getZipcode())) {
+                if (strlen($postal->getZipcode() ?? '')) {
                     $postaladdr->appendChild($this->createElement('contact:pc', $postal->getZipcode()));
                 }
-                if (strlen($postal->getCountrycode())) {
+                if (strlen($postal->getCountrycode() ?? '')) {
                     $postaladdr->appendChild($this->createElement('contact:cc', $postal->getCountrycode()));
                 }
                 $postalinfo->appendChild($postaladdr);
