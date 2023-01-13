@@ -124,7 +124,7 @@ class eppContactPostalInfo {
      * @return void
      */
     public function setName($name) {
-        $this->name = htmlspecialchars($name, ENT_COMPAT, "UTF-8");
+        $this->name = htmlspecialchars($name ?? '', ENT_COMPAT, "UTF-8");
     }
 
     /**

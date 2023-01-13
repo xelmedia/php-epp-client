@@ -179,7 +179,7 @@ class eppContact {
 
     public function setPassword($password) {
         if ($password !== null) {
-            $this->password = htmlspecialchars($password, ENT_COMPAT, "UTF-8");
+            $this->password = htmlspecialchars($password ?? '', ENT_COMPAT, "UTF-8");
         } else {
             $this->password = null;
         }
