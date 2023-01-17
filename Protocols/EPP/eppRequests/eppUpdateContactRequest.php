@@ -102,7 +102,7 @@ class eppUpdateContactRequest extends eppContactRequest {
                 $postalinfo->appendChild($this->createElement('contact:name', $postal->getName()));
             }
             // Optional field
-            if (!is_null($postal->getOrganisationName() ?? '')) {
+            if (strlen($postal->getOrganisationName() ?? '') > 0) {
                 $postalinfo->appendChild($this->createElement('contact:org', $postal->getOrganisationName()));
             }
             if ((($postal->getStreetCount()) > 0) || strlen($postal->getCity() ?? '') || strlen($postal->getProvince() ?? '') || strlen($postal->getZipcode() ?? '') || strlen($postal->getCountrycode() ?? '')) {
